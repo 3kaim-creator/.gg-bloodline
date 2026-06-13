@@ -34,23 +34,23 @@ background:radial-gradient(circle,transparent 30%,rgba(0,0,0,0.9));
 z-index:-2;
 }
 
-/* INTRO */
+/* INTRO SCREEN */
 #intro{
 position:fixed;
 inset:0;
-background:black;
 display:flex;
 justify-content:center;
 align-items:center;
+background:black;
 z-index:9999;
 cursor:pointer;
-transition:1.2s;
+transition:1.2s ease;
 }
 
 #intro h1{
 font-family:'Cinzel',serif;
 font-size:4rem;
-color:red;
+color:#ff0000;
 text-shadow:0 0 20px red,0 0 60px darkred;
 animation:pulse 1.8s infinite;
 }
@@ -71,9 +71,10 @@ font-family:'Cinzel',serif;
 font-size:4.5rem;
 color:#ff1a1a;
 text-shadow:0 0 20px red,0 0 50px red;
+letter-spacing:4px;
 }
 
-/* CARDS */
+/* TREE */
 .tree{
 max-width:1100px;
 margin:auto;
@@ -89,7 +90,7 @@ backdrop-filter:blur(15px);
 border:1px solid rgba(255,0,0,0.35);
 border-radius:16px;
 padding:25px;
-box-shadow:0 0 25px rgba(255,0,0,0.2);
+box-shadow:0 0 25px rgba(255,0,0,0.25);
 animation:fadeUp 1s ease;
 }
 
@@ -105,7 +106,6 @@ text-align:center;
 padding:5px;
 }
 
-/* ANIMATIONS */
 @keyframes fadeUp{
 from{opacity:0;transform:translateY(30px);}
 to{opacity:1;transform:translateY(0);}
@@ -127,10 +127,6 @@ from{transform:translateY(100vh);opacity:0;}
 20%{opacity:1;}
 to{transform:translateY(-100vh);opacity:0;}
 }
-
-audio{
-display:none;
-}
 </style>
 </head>
 
@@ -139,9 +135,9 @@ display:none;
 <div class="bg"></div>
 <div class="overlay"></div>
 
-<!-- 🔊 MUSIC -->
+<!-- 🔊 AUDIO (WORKING HOSTED MUSIC) -->
 <audio id="bgm" loop>
-<source src="your-music-file.mp3" type="audio/mpeg">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b8f1f2c3.mp3?filename=dark-mystery-trailer-110233.mp3" type="audio/mpeg">
 </audio>
 
 <!-- INTRO -->
@@ -193,16 +189,22 @@ p.style.animationDuration=(4+Math.random()*8)+"s";
 document.body.appendChild(p);
 }
 
-/* CLICK TO ENTER + MUSIC START */
-document.getElementById("intro").onclick = function(){
-this.style.opacity="0";
-setTimeout(()=>this.style.display="none",1200);
-
-/* MUSIC PLAY */
+/* CLICK TO ENTER (FIXED AUDIO UNLOCK) */
+document.getElementById("intro").addEventListener("click", async () => {
+const intro = document.getElementById("intro");
 const audio = document.getElementById("bgm");
+
+intro.style.opacity = "0";
+
+setTimeout(()=>intro.style.display="none",1200);
+
+try {
 audio.volume = 0.6;
-audio.play();
-};
+await audio.play();
+} catch (e) {
+console.log("Audio blocked:", e);
+}
+});
 
 </script>
 
