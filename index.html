@@ -6,108 +6,228 @@
 <title>LA FUENTE BLOODLINE</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap');
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Georgia, serif;
 }
 
 body{
-    min-height:100vh;
-    background:url('https://media.discordapp.net/attachments/1513918459636092998/1515232700502380544/IMG_20260609_004414.png?ex=6a2e41eb&is=6a2cf06b&hm=7ada6464733f2f5522a10507faf9ffaf1799a4dcaf82d9e9e73d1f54c24e22b1&=&format=webp&quality=lossless&width=798&height=796') center center/cover no-repeat;
+    font-family:'Poppins',sans-serif;
+    background:url('https://media.discordapp.net/attachments/1513918459636092998/1515232700502380544/IMG_20260609_004414.png?ex=6a2e41eb&is=6a2cf06b&hm=7ada6464733f2f5522a10507faf9ffaf1799a4dcaf82d9e9e73d1f54c24e22b1&=&format=webp&quality=lossless&width=798&height=796')
+    center center/cover no-repeat fixed;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* INTRO SCREEN */
+#intro{
+    position:fixed;
+    inset:0;
+    background:black;
     display:flex;
     justify-content:center;
     align-items:center;
-    text-align:center;
-    color:white;
+    z-index:9999;
+    cursor:pointer;
+    transition:1s;
+}
+
+#intro h1{
+    font-family:'Cinzel',serif;
+    font-size:4rem;
+    color:#ff0000;
+    text-shadow:
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 40px #ff0000,
+    0 0 80px #ff0000;
+    animation:pulse 2s infinite;
+}
+
+.hidden{
+    opacity:0;
+    visibility:hidden;
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.08);}
 }
 
 .overlay{
-    width:100%;
-    min-height:100vh;
     background:rgba(0,0,0,0.65);
-    padding:40px;
+    min-height:100vh;
+    padding:50px 20px;
 }
 
-h1{
+/* TITLE */
+.title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.title h1{
+    font-family:'Cinzel',serif;
     font-size:4rem;
-    letter-spacing:5px;
-    text-shadow:0 0 20px red;
-    margin-bottom:20px;
+    color:#ff1a1a;
+    text-shadow:
+    0 0 10px red,
+    0 0 20px red,
+    0 0 40px red,
+    0 0 80px red;
+    animation:fadeIn 2s;
 }
 
-.enter-btn{
-    display:inline-block;
-    padding:15px 40px;
-    border:2px solid white;
-    color:white;
-    text-decoration:none;
-    font-size:1.2rem;
-    margin-bottom:40px;
-    transition:.3s;
+.subtitle{
+    color:#ddd;
+    margin-top:10px;
+    letter-spacing:3px;
 }
 
-.enter-btn:hover{
-    background:white;
-    color:black;
+/* CARDS */
+.tree{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    gap:30px;
 }
 
-.section{
-    margin-top:40px;
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,0,0,0.4);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:
+    0 0 20px rgba(255,0,0,0.3),
+    0 0 40px rgba(255,0,0,0.15);
+    animation:fadeUp 1.5s ease forwards;
 }
 
-.section h2{
-    font-size:2.5rem;
-    color:#ff4040;
+.card h2{
+    text-align:center;
+    color:#ff3b3b;
     margin-bottom:15px;
+    font-size:2rem;
+    text-shadow:0 0 15px red;
 }
 
 .member{
-    font-size:1.2rem;
-    margin:6px 0;
+    text-align:center;
+    padding:8px;
+    font-size:1.1rem;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+/* PARTICLES */
+.particle{
+    position:fixed;
+    width:4px;
+    height:4px;
+    background:red;
+    border-radius:50%;
+    box-shadow:0 0 10px red;
+    animation:float 10s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
 }
 </style>
 </head>
+
 <body>
+
+<div id="intro">
+    <h1>CLICK TO ENTER</h1>
+</div>
 
 <div class="overlay">
 
-<h1>LA FUENTE BLOODLINE</h1>
-
-<a href="#" class="enter-btn">
-CLICK TO ENTER INTERACTION
-</a>
-
-<div class="section">
-<h2>FAMILY HEAD</h2>
-
-<div class="member">VEL V. LA FUENTE</div>
-<div class="member">EYRON C. LA FUENTE</div>
-<div class="member">JAY LA FUENTE</div>
-<div class="member">MIKE S. LA FUENTE</div>
-<div class="member">SILI D. LA FUENTE</div>
-<div class="member">AIM V. LA FUENTE</div>
+<div class="title">
+    <h1>LA FUENTE BLOODLINE</h1>
+    <div class="subtitle">Family Legacy</div>
 </div>
 
-<div class="section">
-<h2>MATRIARCH</h2>
+<div class="tree">
 
-<div class="member">RIRI C. LA FUENTE</div>
+    <div class="card">
+        <h2>FAMILY HEAD</h2>
+
+        <div class="member">VEL V. LA FUENTE</div>
+        <div class="member">EYRON C. LA FUENTE</div>
+        <div class="member">JAY LA FUENTE</div>
+        <div class="member">MIKE S. LA FUENTE</div>
+        <div class="member">SILI D. LA FUENTE</div>
+        <div class="member">AIM V. LA FUENTE</div>
+    </div>
+
+    <div class="card">
+        <h2>MATRIARCH</h2>
+
+        <div class="member">RIRI C. LA FUENTE</div>
+    </div>
+
+    <div class="card">
+        <h2>SECOND GENERATION</h2>
+
+        <div class="member">Scarlett B. La Fuente</div>
+        <div class="member">Qivan B. La Fuente</div>
+        <div class="member">Jewel C. La Fuente</div>
+        <div class="member">Shanti C. La Fuente</div>
+        <div class="member">Kydii C. La Fuente</div>
+        <div class="member">Scyte La Fuente</div>
+    </div>
+
 </div>
 
-<div class="section">
-<h2>SECOND GENERATION</h2>
-
-<div class="member">Scarlett B. La Fuente</div>
-<div class="member">Qivan B. La Fuente</div>
-<div class="member">Jewel C. La Fuente</div>
-<div class="member">Shanti C. La Fuente</div>
-<div class="member">Kydii C. La Fuente</div>
-<div class="member">Scyte La Fuente</div>
 </div>
 
-</div>
+<script>
+document.getElementById("intro").onclick = function(){
+    this.classList.add("hidden");
+}
+
+/* Floating Blood Particles */
+for(let i=0;i<50;i++){
+    let p=document.createElement("div");
+    p.classList.add("particle");
+
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=(5+Math.random()*10)+"s";
+    p.style.animationDelay=Math.random()*5+"s";
+
+    document.body.appendChild(p);
+}
+</script>
 
 </body>
 </html>
